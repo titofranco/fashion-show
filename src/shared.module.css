@@ -19,12 +19,13 @@
   background: rgba(70, 47, 153, 0.6);
   box-shadow: -2px 2px 6px #A79FE1;
   border-radius: 10px;
-  height: 14vh;
-  width: 20vw;
-  display: flex;
+  height: 17vh !important;
+  width: 20vw !important;
+  display: flex !important;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+  margin-left: 1vw;
 }
 
 .optionSelected {
@@ -40,4 +41,16 @@
 
 .activeGarment {
   opacity: 1 !important
+}
+
+.garmentCarousel {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: 20vh;
+}
+
+ .slick-list {
+  height: 20vh !important;
 }

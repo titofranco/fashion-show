@@ -30,6 +30,7 @@ import top2 from '../images/woman/top2.png'
 import top3 from '../images/woman/top3.png'
 import top4 from '../images/woman/top4.png'
 import top5 from '../images/woman/top5.png'
+import '../App.css';
 
 import Slider from "react-slick";
 
@@ -37,13 +38,14 @@ export default function Woman() {
 
   const randomPrice = () => Math.floor(Math.random() * 100)
   const priceType = () => [gem, money][Math.floor(Math.random() * 2)]
+  const activeGarment = (garment) => option === garment ? ` ${styles.activeGarment}` : ''
 
   var settings = {
     dots: false,
     infinite: true,
+    speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: true
+    slidesToScroll: 1
   };
 
   function garmentObject(image) {
@@ -55,9 +57,9 @@ export default function Woman() {
   }
 
   const options = {
-    'hair': [garmentObject(blackHair), garmentObject(blondHair), garmentObject(brownHair),garmentObject(greyHair)],
+    'hair': [garmentObject(blackHair), garmentObject(blondHair), garmentObject(brownHair),garmentObject(greyHair), garmentObject(redHair) ],
     'pants': [garmentObject(pants1), garmentObject(pants2), garmentObject(pants3), garmentObject(pants4)],
-    'shoes': [garmentObject(shoes1), garmentObject(shoes2), garmentObject(shoes3), garmentObject(shoes4), garmentObject(shoes5)],
+    'shoes': [garmentObject(shoes1), garmentObject(shoes2), garmentObject(shoes3), garmentObject(shoes4), garmentObject(shoes5), garmentObject(shoes6)],
     'top': [garmentObject(top1), garmentObject(top2), garmentObject(top3), garmentObject(top4), garmentObject(top5)]
   }
 
@@ -68,7 +70,6 @@ export default function Woman() {
     setGarmentList(options[option])
   }, [option])
 
-  const activeGarment = (garment) => option === garment ? ` ${styles.activeGarment}` : ''
 
   return (
     <main
@@ -156,12 +157,7 @@ export default function Woman() {
         }}
       >
         <h4 className={styles.optionSelected}>{option}</h4>
-        <section css={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          width: '100%'
-          }}>
+        <Slider {...settings} className={styles.garmentCarousel}>
           {garmentList.map((item, i) => (
             <div key={i} className={styles.selectItemContainer}>
               <div css={{
@@ -173,13 +169,13 @@ export default function Woman() {
                   <img src={item.garment}
                   css={{width:'100%', height:'100%', objectFit: 'cover'}}
                   alt="woman hair 1"/></div>
-              <div>
+              <div css={{display: 'flex', alignItems:'center'}}>
                 <img src={item.priceType} alt="gem" width="18px" height="18px" />
                 <span className={styles.priceTag} css={{color: '#A79FE1'}}>{item.price}K</span>
               </div>
             </div>
           ))}
-        </section>
+        </Slider>
 
       </div>
     </main>

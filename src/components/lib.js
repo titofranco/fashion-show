@@ -11,13 +11,22 @@ const Link = styled(RouterLink)({
   fontFamily: 'Prosto One',
   fontSize: '12px',
   lineHeight: '29px',
-  // display: 'flex',
-  // alignItems: 'center',
-  // justifyContent: 'center',
   textAlign: 'center',
   color: '#FFFFFF',
   textTransform: 'uppercase',
   textDecoration: 'none'
 })
 
-export {Link}
+const OptionButton = styled.button({
+  backgroundSize: 'cover',
+  height: '30px',
+  width: '30px',
+  backgroundColor: 'transparent',
+  border: 'none',
+  margin: '0 auto',
+  opacity: '0.5'
+  },
+  props => ({backgroundImage: `url(${props.backgroundImage})`})
+)
+
+export {Link, OptionButton}

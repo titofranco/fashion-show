@@ -1,0 +1,43 @@
+.actionBar {
+  background-color: #BBB8DE;
+  border: 2px solid #5A1F8B;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+}
+
+.priceTag {
+  font-family: 'Prosto One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #5A1F8B;
+  margin-left: 1vw;
+}
+
+.selectItemContainer {
+  background: rgba(70, 47, 153, 0.6);
+  box-shadow: -2px 2px 6px #A79FE1;
+  border-radius: 10px;
+  height: 14vh;
+  width: 20vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.optionSelected {
+  font-family: 'Prosto One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  color: #FFFFFF;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.activeGarment {
+  opacity: 1 !important
+}

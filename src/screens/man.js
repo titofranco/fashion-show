@@ -1,12 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
-import { MainBackground, OptionButton, SelectGarmentSidebar, TotalPriceBar, BodySection, Gem, GoldCoin, BodyImg, PriceTag } from "../components/lib"
+
+import { MainBackground, TotalPriceBar, BodySection, Gem, GoldCoin, BodyImg, PriceTag } from "../components/lib"
+import PickGarment from "../components/pick-garment"
+import GarmentSidebar from "../components/garment-siderbar"
+import { garmentObject } from "../utils/misc"
+
 import manBody from '../images/man/body.png'
 import manHair from '../images/short-male-hair-shape.png'
 import tShirt from '../images/t-shirt.png'
 import pants from '../images/pants.png'
 import sportShoes from '../images/sport-shoe.png'
-import styles from '../shared.module.css'
 import hair1 from '../images/man/hair1.png'
 import hair2 from '../images/man/hair2.png'
 import hair3 from '../images/man/hair3.png'
@@ -29,8 +33,6 @@ import tShirt3 from '../images/man/t-shirt3.png'
 import tShirt4 from '../images/man/t-shirt4.png'
 import tShirt5 from '../images/man/t-shirt5.png'
 import tShirt6 from '../images/man/t-shirt5.png'
-import { garmentObject } from "../utils/misc"
-import PickGarment from "../components/pick-garment"
 
 const manOptions = {
   'hair': [garmentObject(hair1), garmentObject(hair2), garmentObject(hair3), garmentObject(hair4)],
@@ -50,7 +52,6 @@ export default function Man() {
 
   const [option, setOption] = React.useState('hair')
   const [garmentList, setGarmentList] = React.useState(manOptions[option])
-  const activeGarment = (garment) => option === garment ? ` ${styles.activeGarment}` : ''
 
   React.useEffect(() => {
     setGarmentList(manOptions[option])
@@ -66,11 +67,7 @@ export default function Man() {
       </TotalPriceBar>
       <BodySection>
         <BodyImg src={manBody} alt="man Body"/>
-        <SelectGarmentSidebar>
-          {Object.entries(sidebarOptions).map(([sidebarOption, image], index) =>
-            <OptionButton key={index} backgroundImage={image} className={activeGarment(sidebarOption)} onClick={() => setOption(sidebarOption)}></OptionButton>
-          )}
-        </SelectGarmentSidebar>
+        <GarmentSidebar sidebarOptions={sidebarOptions} option={option} setOption={setOption} />
       </BodySection>
       {/*end man body container */}
       <PickGarment garmentList={garmentList} option={option} variant="man" />

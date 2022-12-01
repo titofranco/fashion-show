@@ -1,6 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled/macro'
 import {Link as RouterLink} from 'react-router-dom'
+import selectBackground from "../images/select-bg.png"
+import gem from '../images/gem.png'
+import goldCoin from '../images/money.png'
 
 const Link = styled(RouterLink)({
   width: '100px',
@@ -29,4 +32,107 @@ const OptionButton = styled.button({
   props => ({backgroundImage: `url(${props.backgroundImage})`})
 )
 
-export {Link, OptionButton}
+const MainBackground = styled.main({
+  backgroundImage: `url(${selectBackground})`,
+  width: "100vw",
+  height: "100vh",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  }
+)
+
+const commonBar = {
+  backgroundColor: '#BBB8DE',
+  border: '2px solid #5A1F8B',
+  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+  borderRadius: '30px'
+}
+
+const TotalPriceBar = styled.div({
+  height: "6vh",
+  width: "43%",
+  position: "relative",
+  top: "3vh",
+  left: "3vw",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  ...commonBar
+})
+
+const PriceTag = styled.span({
+  fontFamily: 'Prosto One',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '12px',
+  lineHeight: '15px',
+  marginLeft: '1vw',
+}, ({variant = 'primary'}) => priceTagVariants[variant])
+
+const priceTagVariants = {
+  primary: {
+    color: '#5A1F8B',
+  },
+  secondary: {
+    color: '#A79FE1'
+  }
+}
+
+const SelectGarmentSidebar = styled.div({
+  height: "30vh",
+  width: "48px",
+  display: "flex",
+  justifyContent: "space-evenly",
+  flexDirection: "column",
+  marginRight: "5vw",
+  ...commonBar
+})
+
+const PickGarmentContainer = styled.div({
+  boxSizing: "border-box",
+  width: "100%",
+  height: "31.5vh",
+  background: "rgba(70, 47, 153, 0.6)",
+  border: "2px solid #A79FE1",
+  borderRadius: "40px 40px 0 0",
+  display: "flex",
+  justifyContent: "space-evenly",
+  alignItems: "center",
+  flexDirection: 'column'
+})
+
+const BodySection = styled.section({
+  height: "62vh",
+  width: "100vw",
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "center",
+})
+
+const Garment = styled.div({
+  width:'16vw',
+  height:'10vh',
+  display: 'flex',
+  justifyContent: 'center',
+})
+
+const Gem = styled.img({
+  width: "18px",
+  height: '18px'
+})
+Gem.defaultProps = { 'src': gem , 'alt': 'Gem' }
+
+const GoldCoin = styled.img({
+  width: "18px",
+  height: "18px"
+})
+GoldCoin.defaultProps = { 'src': goldCoin, 'alt': 'Gold Coin' }
+
+const BodyImg = styled.img({
+  height: "inherit",
+  width: "75vw",
+  marginTop: "2vh",
+})
+
+export {Link, OptionButton, MainBackground, TotalPriceBar, SelectGarmentSidebar, PickGarmentContainer, BodySection, Gem, GoldCoin, BodyImg, PriceTag, Garment }

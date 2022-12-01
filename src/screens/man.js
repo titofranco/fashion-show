@@ -1,15 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
-import { OptionButton } from "../components/lib"
-import selectBackground from "../images/select-bg.png"
+import { MainBackground, OptionButton, PickGarmentContainer, SelectGarmentSidebar, TotalPriceBar, BodySection, Gem, GoldCoin, BodyImg, PriceTag, Garment } from "../components/lib"
 import manBody from '../images/man/body.png'
 import manHair from '../images/short-male-hair-shape.png'
 import tShirt from '../images/t-shirt.png'
 import pants from '../images/pants.png'
 import sportShoe from '../images/sport-shoe.png'
 import styles from '../shared.module.css'
-import gem from '../images/gem.png'
-import money from '../images/money.png'
 import hair1 from '../images/man/hair1.png'
 import hair2 from '../images/man/hair2.png'
 import hair3 from '../images/man/hair3.png'
@@ -56,113 +53,42 @@ export default function Man() {
 
 
   return (
-    <main
-      css={{
-        backgroundImage: `url(${selectBackground})`,
-        width: "100vw",
-        height: "100vh",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-    >
-      <div
-        className={styles.actionBar}
-        css={{
-          height: "6vh",
-          width: "43%",
-          position: "relative",
-          top: "3vh",
-          left: "3vw",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <img src={gem} alt="gem" width="18px" height="18px" />
-        <span className={styles.priceTag}>3.0K</span>
-        <img
-          src={money}
-          alt="money"
-          width="18px"
-          height="18px"
-          css={{ marginLeft: "3vw" }}
-        />
-        <span className={styles.priceTag}>5.0K</span>
-      </div>
-      <div
-        css={{
-          height: "62vh",
-          width: "100vw",
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-        }}
-      >
-        <img
-          src={manBody}
-          alt="man Body"
-          css={{
-            height: "inherit",
-            width: "75vw",
-            marginTop: "2vh",
-          }}
-        />
-        <div
-          className={styles.actionBar}
-          css={{
-            height: "30vh",
-            width: "48px",
-            display: "flex",
-            justifyContent: "space-evenly",
-            flexDirection: "column",
-            marginRight: "5vw",
-          }}
-        >
+    <MainBackground>
+      <TotalPriceBar>
+        <Gem/>
+        <PriceTag css={{ marginRight: "3vw" }}>3.0K</PriceTag>
+        <GoldCoin/>
+        <PriceTag>5.0K</PriceTag>
+      </TotalPriceBar>
+      <BodySection>
+        <BodyImg src={manBody} alt="man Body"/>
+        <SelectGarmentSidebar>
           <OptionButton backgroundImage={manHair} className={activeGarment('hair')} onClick={() => setOption('hair')}></OptionButton>
           <OptionButton backgroundImage={tShirt} className={activeGarment('t-shirt')} onClick={() => setOption('t-shirt')}></OptionButton>
           <OptionButton backgroundImage={pants} className={activeGarment('pants')} onClick={() => setOption('pants')}></OptionButton>
           <OptionButton backgroundImage={sportShoe} className={activeGarment('shoes')} onClick={() => setOption('shoes')} ></OptionButton>
-        </div>
-      </div>
+        </SelectGarmentSidebar>
+      </BodySection>
       {/*end man body container */}
-      <div
-        css={{
-          boxSizing: "border-box",
-          width: "100%",
-          height: "31.5vh",
-          background: "rgba(70, 47, 153, 0.6)",
-          border: "2px solid #A79FE1",
-          borderRadius: "40px 40px 0 0",
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          flexDirection: 'column'
-        }}
-      >
+      <PickGarmentContainer>
         <h4 className={styles.optionSelected}>{option}</h4>
         <Slider {...carouselSettings} className={styles.garmentCarousel}>
           {garmentList.map((item, i) => (
-            <div key={i} className={styles.selectItemContainer}>
-              <div css={{
-                width:'16vw',
-                height:'10vh',
-                display: 'flex',
-                justifyContent: 'center',
-                }}>
-                  <img src={item.garment}
-                  css={{width:'100%', height:'100%', objectFit: 'contain'}}
-                  alt={`man hair ${i}`}/></div>
+            <div key={i} className={styles.selectGarmentContainer}>
+              <Garment>
+                <img src={item.garment}
+                css={{width:'100%', height:'100%', objectFit: 'contain'}}
+                alt={`Man ${option} ${i}`}/>
+              </Garment>
               <div css={{display: 'flex', alignItems:'center'}}>
                 <img src={item.priceType} alt="gem" width="18px" height="18px" />
-                <span className={styles.priceTag} css={{color: '#A79FE1'}}>{item.price}K</span>
+                <PriceTag variant="secondary">{item.price}K</PriceTag>
               </div>
             </div>
           ))}
         </Slider>
-
-      </div>
-    </main>
+      </PickGarmentContainer>
+    </MainBackground>
   );
 
 }

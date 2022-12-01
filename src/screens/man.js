@@ -7,10 +7,6 @@ import GarmentSidebar from "../components/garment-siderbar"
 import { garmentObject } from "../utils/misc"
 
 import manBody from '../images/man/body.png'
-import manHair from '../images/short-male-hair-shape.png'
-import tShirt from '../images/t-shirt.png'
-import pants from '../images/pants.png'
-import sportShoes from '../images/sport-shoe.png'
 import hair1 from '../images/man/hair1.png'
 import hair2 from '../images/man/hair2.png'
 import hair3 from '../images/man/hair3.png'
@@ -41,13 +37,6 @@ const manOptions = {
   't-shirt': [garmentObject(tShirt1), garmentObject(tShirt2), garmentObject(tShirt3), garmentObject(tShirt4), garmentObject(tShirt5), garmentObject(tShirt6)]
 }
 
-const sidebarOptions = {
-  'hair': manHair,
-  't-shirt': tShirt,
-  'pants': pants,
-  'shoes': sportShoes
-}
-
 export default function Man() {
 
   const [option, setOption] = React.useState('hair')
@@ -67,7 +56,7 @@ export default function Man() {
       </TotalPriceBar>
       <BodySection>
         <BodyImg src={manBody} alt="man Body"/>
-        <GarmentSidebar sidebarOptions={sidebarOptions} option={option} setOption={setOption} />
+        <GarmentSidebar variant="man" option={option} setOption={setOption} />
       </BodySection>
       {/*end man body container */}
       <PickGarment garmentList={garmentList} option={option} variant="man" />

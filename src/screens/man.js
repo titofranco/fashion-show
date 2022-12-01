@@ -76,13 +76,12 @@ export default function Man() {
           {garmentList.map((item, i) => (
             <div key={i} className={styles.selectGarmentContainer}>
               <Garment>
-                <img src={item.garment}
-                css={{width:'100%', height:'100%', objectFit: 'contain'}}
-                alt={`Man ${option} ${i}`}/>
+                <img src={item.garment} alt={`Man ${option} ${i}`}
+                css={{width:'100%', height:'100%', objectFit: 'contain'}} />
               </Garment>
               <div css={{display: 'flex', alignItems:'center'}}>
                 <img src={item.priceType} alt="gem" width="18px" height="18px" />
-                <PriceTag variant="secondary">{item.price}K</PriceTag>
+                <PriceTag variant="secondary">{item.price}</PriceTag>
               </div>
             </div>
           ))}

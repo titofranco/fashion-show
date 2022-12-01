@@ -1,8 +1,8 @@
 import gem from '../images/gem.png'
-import money from '../images/gem.png'
+import money from '../images/money.png'
 
-const randomPrice = () => Math.floor(Math.random() * 100)
-const priceType = () => [gem, money][Math.floor(Math.random() * 2)]
+const gemRandomPrice = () => Math.floor(Math.random() * 1000)
+const goldRandomPrice = () => Math.floor(Math.random() * 100) / 10 + ' K'
 
 const carouselSettings = {
   dots: false,
@@ -13,10 +13,11 @@ const carouselSettings = {
 };
 
 function garmentObject(image) {
+  const index = Math.floor(Math.random() * 2)
   return {
     garment: image,
-    price: randomPrice(),
-    priceType: priceType()
+    price: index === 0 ? gemRandomPrice() : goldRandomPrice(),
+    priceType: [gem, money][index]
   }
 }
 

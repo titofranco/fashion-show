@@ -2,7 +2,7 @@
 import React from "react"
 import { OptionButton } from "../components/lib"
 import selectBackground from "../images/select-bg.png"
-import womanBody from '../images/womanBody.png'
+import womanBody from '../images/woman/body.png'
 import womanHair from '../images/long-wavy-hair-variant.png'
 import tShirt from '../images/t-shirt.png'
 import pants from '../images/pants.png'
@@ -20,7 +20,7 @@ import pants2 from '../images/woman/pants2.png'
 import pants3 from '../images/woman/pants3.png'
 import pants4 from '../images/woman/pants4.png'
 import shoes1 from '../images/woman/shoes1.png'
-import shoes2 from '../images/woman/shoes1.png'
+import shoes2 from '../images/woman/shoes2.png'
 import shoes3 from '../images/woman/shoes3.png'
 import shoes4 from '../images/woman/shoes4.png'
 import shoes5 from '../images/woman/shoes5.png'
@@ -31,40 +31,21 @@ import top3 from '../images/woman/top3.png'
 import top4 from '../images/woman/top4.png'
 import top5 from '../images/woman/top5.png'
 import '../App.css';
-
 import Slider from "react-slick";
+import { carouselSettings, garmentObject} from "../utils/misc"
+
+const options = {
+  'hair': [garmentObject(blackHair), garmentObject(blondHair), garmentObject(brownHair),garmentObject(greyHair), garmentObject(redHair) ],
+  'pants': [garmentObject(pants1), garmentObject(pants2), garmentObject(pants3), garmentObject(pants4)],
+  'shoes': [garmentObject(shoes1), garmentObject(shoes2), garmentObject(shoes3), garmentObject(shoes4), garmentObject(shoes5), garmentObject(shoes6)],
+  'top': [garmentObject(top1), garmentObject(top2), garmentObject(top3), garmentObject(top4), garmentObject(top5)]
+}
 
 export default function Woman() {
 
-  const randomPrice = () => Math.floor(Math.random() * 100)
-  const priceType = () => [gem, money][Math.floor(Math.random() * 2)]
-  const activeGarment = (garment) => option === garment ? ` ${styles.activeGarment}` : ''
-
-  var settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1
-  };
-
-  function garmentObject(image) {
-    return {
-      garment: image,
-      price: randomPrice(),
-      priceType: priceType()
-    }
-  }
-
-  const options = {
-    'hair': [garmentObject(blackHair), garmentObject(blondHair), garmentObject(brownHair),garmentObject(greyHair), garmentObject(redHair) ],
-    'pants': [garmentObject(pants1), garmentObject(pants2), garmentObject(pants3), garmentObject(pants4)],
-    'shoes': [garmentObject(shoes1), garmentObject(shoes2), garmentObject(shoes3), garmentObject(shoes4), garmentObject(shoes5), garmentObject(shoes6)],
-    'top': [garmentObject(top1), garmentObject(top2), garmentObject(top3), garmentObject(top4), garmentObject(top5)]
-  }
-
   const [option, setOption] = React.useState('hair')
   const [garmentList, setGarmentList] = React.useState(options[option])
+  const activeGarment = (garment) => option === garment ? ` ${styles.activeGarment}` : ''
 
   React.useEffect(() => {
     setGarmentList(options[option])
@@ -157,7 +138,7 @@ export default function Woman() {
         }}
       >
         <h4 className={styles.optionSelected}>{option}</h4>
-        <Slider {...settings} className={styles.garmentCarousel}>
+        <Slider {...carouselSettings} className={styles.garmentCarousel}>
           {garmentList.map((item, i) => (
             <div key={i} className={styles.selectItemContainer}>
               <div css={{
@@ -167,7 +148,7 @@ export default function Woman() {
                 justifyContent: 'center',
                 }}>
                   <img src={item.garment}
-                  css={{width:'100%', height:'100%', objectFit: 'cover'}}
+                  css={{width:'100%', height:'100%', objectFit: 'contain'}}
                   alt="woman hair 1"/></div>
               <div css={{display: 'flex', alignItems:'center'}}>
                 <img src={item.priceType} alt="gem" width="18px" height="18px" />

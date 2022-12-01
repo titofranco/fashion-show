@@ -36,7 +36,7 @@
   line-height: 27px;
   color: #FFFFFF;
   margin: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .activeGarment {

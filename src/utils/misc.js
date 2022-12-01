@@ -1,5 +1,4 @@
-import gem from '../images/gem.png'
-import money from '../images/money.png'
+import { Gem, GoldCoin } from '../components/lib'
 
 const gemRandomPrice = () => Math.floor(Math.random() * 1000)
 const goldRandomPrice = () => Math.floor(Math.random() * 100) / 10 + ' K'
@@ -17,7 +16,7 @@ function garmentObject(image) {
   return {
     garment: image,
     price: index === 0 ? gemRandomPrice() : goldRandomPrice(),
-    priceType: [gem, money][index]
+    priceIcon: [Gem, GoldCoin][index]
   }
 }
 

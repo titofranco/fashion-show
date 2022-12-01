@@ -5,7 +5,7 @@ import manBody from '../images/man/body.png'
 import manHair from '../images/short-male-hair-shape.png'
 import tShirt from '../images/t-shirt.png'
 import pants from '../images/pants.png'
-import sportShoe from '../images/sport-shoe.png'
+import sportShoes from '../images/sport-shoe.png'
 import styles from '../shared.module.css'
 import hair1 from '../images/man/hair1.png'
 import hair2 from '../images/man/hair2.png'
@@ -34,23 +34,29 @@ import '../App.css';
 import Slider from "react-slick";
 import { carouselSettings, garmentObject} from "../utils/misc"
 
-const options = {
+const manOptions = {
   'hair': [garmentObject(hair1), garmentObject(hair2), garmentObject(hair3), garmentObject(hair4)],
   'pants': [garmentObject(pants1), garmentObject(pants2), garmentObject(pants3), garmentObject(pants4), garmentObject(pants5), garmentObject(pants6)],
   'shoes': [garmentObject(shoes1), garmentObject(shoes2), garmentObject(shoes3), garmentObject(shoes4), garmentObject(shoes5), garmentObject(shoes6)],
   't-shirt': [garmentObject(tShirt1), garmentObject(tShirt2), garmentObject(tShirt3), garmentObject(tShirt4), garmentObject(tShirt5), garmentObject(tShirt6)]
 }
 
+const sidebarOptions = {
+  'hair': manHair,
+  't-shirt': tShirt,
+  'pants': pants,
+  'shoes': sportShoes
+}
+
 export default function Man() {
 
   const [option, setOption] = React.useState('hair')
-  const [garmentList, setGarmentList] = React.useState(options[option])
+  const [garmentList, setGarmentList] = React.useState(manOptions[option])
   const activeGarment = (garment) => option === garment ? ` ${styles.activeGarment}` : ''
 
   React.useEffect(() => {
-    setGarmentList(options[option])
+    setGarmentList(manOptions[option])
   }, [option])
-
 
   return (
     <MainBackground>
@@ -63,10 +69,9 @@ export default function Man() {
       <BodySection>
         <BodyImg src={manBody} alt="man Body"/>
         <SelectGarmentSidebar>
-          <OptionButton backgroundImage={manHair} className={activeGarment('hair')} onClick={() => setOption('hair')}></OptionButton>
-          <OptionButton backgroundImage={tShirt} className={activeGarment('t-shirt')} onClick={() => setOption('t-shirt')}></OptionButton>
-          <OptionButton backgroundImage={pants} className={activeGarment('pants')} onClick={() => setOption('pants')}></OptionButton>
-          <OptionButton backgroundImage={sportShoe} className={activeGarment('shoes')} onClick={() => setOption('shoes')} ></OptionButton>
+          {Object.entries(sidebarOptions).map(([sidebarOption, image], index) =>
+            <OptionButton key={index} backgroundImage={image} className={activeGarment(sidebarOption)} onClick={() => setOption(sidebarOption)}></OptionButton>
+          )}
         </SelectGarmentSidebar>
       </BodySection>
       {/*end man body container */}
@@ -80,7 +85,7 @@ export default function Man() {
                 css={{width:'100%', height:'100%', objectFit: 'contain'}} />
               </Garment>
               <div css={{display: 'flex', alignItems:'center'}}>
-                <img src={item.priceType} alt="gem" width="18px" height="18px" />
+                {React.createElement(item.priceIcon)}
                 <PriceTag variant="secondary">{item.price}</PriceTag>
               </div>
             </div>
@@ -91,4 +96,3 @@ export default function Man() {
   );
 
 }
-

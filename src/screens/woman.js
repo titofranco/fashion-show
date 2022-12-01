@@ -31,23 +31,29 @@ import '../App.css';
 import Slider from "react-slick";
 import { carouselSettings, garmentObject} from "../utils/misc"
 
-const options = {
+const womanOptions = {
   'hair': [garmentObject(blackHair), garmentObject(blondHair), garmentObject(brownHair),garmentObject(greyHair), garmentObject(redHair) ],
   'pants': [garmentObject(pants1), garmentObject(pants2), garmentObject(pants3), garmentObject(pants4)],
   'shoes': [garmentObject(shoes1), garmentObject(shoes2), garmentObject(shoes3), garmentObject(shoes4), garmentObject(shoes5), garmentObject(shoes6)],
   'top': [garmentObject(top1), garmentObject(top2), garmentObject(top3), garmentObject(top4), garmentObject(top5)]
 }
 
+const sidebarOptions = {
+  'hair': womanHair,
+  'top': tShirt,
+  'pants': pants,
+  'shoes': highHeels
+}
+
 export default function Woman() {
 
   const [option, setOption] = React.useState('hair')
-  const [garmentList, setGarmentList] = React.useState(options[option])
+  const [garmentList, setGarmentList] = React.useState(womanOptions[option])
   const activeGarment = (garment) => option === garment ? ` ${styles.activeGarment}` : ''
 
   React.useEffect(() => {
-    setGarmentList(options[option])
+    setGarmentList(womanOptions[option])
   }, [option])
-
 
   return (
     <MainBackground>
@@ -60,10 +66,9 @@ export default function Woman() {
       <BodySection>
         <BodyImg src={womanBody} alt="Woman Body" />
         <SelectGarmentSidebar>
-          <OptionButton backgroundImage={womanHair} className={activeGarment('hair')} onClick={() => setOption('hair')}></OptionButton>
-          <OptionButton backgroundImage={tShirt} className={activeGarment('top')} onClick={() => setOption('top')}></OptionButton>
-          <OptionButton backgroundImage={pants} className={activeGarment('pants')} onClick={() => setOption('pants')}></OptionButton>
-          <OptionButton backgroundImage={highHeels} className={activeGarment('shoes')} onClick={() => setOption('shoes')} ></OptionButton>
+          {Object.entries(sidebarOptions).map(([sidebarOption, image], index) =>
+            <OptionButton key={index} backgroundImage={image} className={activeGarment(sidebarOption)} onClick={() => setOption(sidebarOption)}></OptionButton>
+          )}
         </SelectGarmentSidebar>
       </BodySection>
       {/*end woman body container */}
@@ -77,7 +82,7 @@ export default function Woman() {
                 css={{width:'100%', height:'100%', objectFit: 'contain'}} />
               </Garment>
               <div css={{display: 'flex', alignItems:'center'}}>
-                <img src={item.priceType} alt="gem" width="18px" height="18px" />
+                {React.createElement(item.priceIcon)}
                 <PriceTag variant="secondary">{item.price}</PriceTag>
               </div>
             </div>

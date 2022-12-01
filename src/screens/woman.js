@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react"
-import { OptionButton, MainBackground, TotalPriceBar, SelectGarmentSidebar, PickGarmentContainer, BodySection, Gem, GoldCoin, BodyImg, PriceTag, Garment } from "../components/lib"
+import { OptionButton, MainBackground, TotalPriceBar, SelectGarmentSidebar, BodySection, Gem, GoldCoin, BodyImg, PriceTag } from "../components/lib"
 import womanBody from '../images/woman/body.png'
 import womanHair from '../images/long-wavy-hair-variant.png'
 import tShirt from '../images/t-shirt.png'
@@ -27,9 +27,8 @@ import top2 from '../images/woman/top2.png'
 import top3 from '../images/woman/top3.png'
 import top4 from '../images/woman/top4.png'
 import top5 from '../images/woman/top5.png'
-import '../App.css';
-import Slider from "react-slick";
-import { carouselSettings, garmentObject} from "../utils/misc"
+import { garmentObject} from "../utils/misc"
+import PickGarment from "../components/pick-garment"
 
 const womanOptions = {
   'hair': [garmentObject(blackHair), garmentObject(blondHair), garmentObject(brownHair),garmentObject(greyHair), garmentObject(redHair) ],
@@ -72,23 +71,7 @@ export default function Woman() {
         </SelectGarmentSidebar>
       </BodySection>
       {/*end woman body container */}
-      <PickGarmentContainer>
-        <h4 className={styles.optionSelected}>{option}</h4>
-        <Slider {...carouselSettings} className={styles.garmentCarousel}>
-          {garmentList.map((item, i) => (
-            <div key={i} className={styles.selectGarmentContainer}>
-              <Garment>
-                <img src={item.garment} alt={`Woman ${option} ${i}`}
-                css={{width:'100%', height:'100%', objectFit: 'contain'}} />
-              </Garment>
-              <div css={{display: 'flex', alignItems:'center'}}>
-                {React.createElement(item.priceIcon)}
-                <PriceTag variant="secondary">{item.price}</PriceTag>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </PickGarmentContainer>
+      <PickGarment garmentList={garmentList} option={option} variant="woman" />
     </MainBackground>
   );
 

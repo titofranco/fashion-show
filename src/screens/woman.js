@@ -52,7 +52,7 @@ export default function Woman() {
         <PriceTag>5.0K</PriceTag>
       </TotalPriceBar>
       <BodySection>
-        <BodyImg src={womanBody} alt="Woman Body" />
+        <BodyImg src={womanBody} alt="Woman Body" css={{paddingRight: '13vw'}} />
         <GarmentSidebar variant="woman" option={option} setOption={setOption} />
       </BodySection>
       {/*end woman body container */}

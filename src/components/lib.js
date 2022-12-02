@@ -22,8 +22,8 @@ const Link = styled(RouterLink)({
 
 const OptionButton = styled.button({
   backgroundSize: 'cover',
-  height: '30px',
-  width: '30px',
+  height: '4vh',
+  width: '9vw',
   backgroundColor: 'transparent',
   border: 'none',
   margin: '0 auto',
@@ -65,7 +65,7 @@ const PriceTag = styled.span({
   fontFamily: 'Prosto One',
   fontStyle: 'normal',
   fontWeight: '400',
-  fontSize: '12px',
+  fontSize: '0.8rem',
   lineHeight: '15px',
   marginLeft: '1vw',
 }, ({variant = 'primary'}) => priceTagVariants[variant])
@@ -81,11 +81,12 @@ const priceTagVariants = {
 
 const SelectGarmentSidebar = styled.div({
   height: "30vh",
-  width: "48px",
+  width: "13vw",
   display: "flex",
   justifyContent: "space-evenly",
   flexDirection: "column",
-  marginRight: "5vw",
+  position: 'absolute',
+  left: '80vw',
   ...commonBar
 })
 
@@ -106,8 +107,14 @@ const BodySection = styled.section({
   height: "62vh",
   width: "100vw",
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: "center",
   alignItems: "center",
+})
+
+const BodyImg = styled.img({
+  height: "inherit",
+  width: "auto",
+  marginTop: "2vh",
 })
 
 const Garment = styled.div({
@@ -118,21 +125,16 @@ const Garment = styled.div({
 })
 
 const Gem = styled.img({
-  width: "18px",
-  height: '18px'
+  width: '4.8vw',
+  height: 'auto'
 })
 Gem.defaultProps = { 'src': gem , 'alt': 'Gem' }
 
 const GoldCoin = styled.img({
-  width: "18px",
-  height: "18px"
+  width: '4.8vw',
+  height: 'auto'
 })
 GoldCoin.defaultProps = { 'src': goldCoin, 'alt': 'Gold Coin' }
 
-const BodyImg = styled.img({
-  height: "inherit",
-  width: "75vw",
-  marginTop: "2vh",
-})
 
 export {Link, OptionButton, MainBackground, TotalPriceBar, SelectGarmentSidebar, PickGarmentContainer, BodySection, Gem, GoldCoin, BodyImg, PriceTag, Garment }
